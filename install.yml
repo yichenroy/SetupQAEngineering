@@ -1,0 +1,26 @@
+---
+- hosts: all
+  remote_user: root
+  become: yes
+  tasks:
+    - name: Install Git
+      package: name=git state=latest
+
+    - name: Install Ant
+      package: name=ant state=latest
+
+    - name: Install SSH
+      package: name=ssh state=latest
+
+    - name: Install Gradle
+      package: name=gradle state=latest
+
+    - name: Install MySQL
+      package: name=mysql-server state=latest
+
+    - name: Clone liferay-portal
+      git:
+        repo: git@github.com:liferay/liferay-portal.git
+        dest: /opt/dev/projects/github/liferay-portal
+        accept_hostkey: yes
+        update: no
